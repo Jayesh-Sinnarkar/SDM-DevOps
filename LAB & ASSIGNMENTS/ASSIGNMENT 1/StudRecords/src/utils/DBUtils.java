@@ -9,6 +9,7 @@ public class DBUtils {
 	public static Connection openConnection() throws SQLException {
 		String url = "jdbc:mysql://localhost:5239/advjava?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true";
 		cn = DriverManager.getConnection(url, "root", "root");
+		System.out.println("Connection Successful...");
 		return cn;
 	}
 }
