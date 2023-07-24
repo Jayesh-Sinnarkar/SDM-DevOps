@@ -1,0 +1,673 @@
+Git commands:
+
+
+jayes@VISION MINGW64 ~/Desktop/GitTest
+$ git init
+Initialized empty Git repository in C:/Users/jayes/Desktop/GitTest/.git/
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ touch abc.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ ls
+abc.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ touch index.html
+
+
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ touch xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ touch def.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ ls
+abc.txt  def.txt  index.html  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        abc.txt
+        def.txt
+        index.html
+        xyz.xml
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git add abc,txt def.txt
+fatal: pathspec 'abc,txt' did not match any files
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git add abc.txt def.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   abc.txt
+        new file:   def.txt
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        index.html
+        xyz.xml
+
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git commit
+[master (root-commit) 0a44351] Added first 2 files
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 abc.txt
+ create mode 100644 def.txt
+
+
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        index.html
+        xyz.xml
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git add .
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   index.html
+        new file:   xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git branch branch1
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git add .
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   file.txt
+
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git commit -m "added in master"
+[master 342dc6e] added in master
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git checkout branch1
+Switched to branch 'branch1'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git add file.txt
+fatal: pathspec 'file.txt' did not match any files
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ ls
+abc.txt  def.txt  index.html  jayesh.txt  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git branch -d branch1
+error: Cannot delete branch 'branch1' checked out at 'C:/Users/jayes/Desktop/GitTest'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git checkout master
+Switched to branch 'master'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git branch -d branch1
+Deleted branch branch1 (was f61f4da).
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ rm file.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add/rm <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        deleted:    file.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git add .
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        deleted:    file.txt
+
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git commit -m "file.txt deleted"
+[master 3433e68] file.txt deleted
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ delete mode 100644 file.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git log
+commit 3433e687cf2a7a66974231bf5b74f2e4dc0aad18 (HEAD -> master)
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:30:57 2023 +0530
+
+    file.txt deleted
+
+commit 342dc6e0d155acad16cc02f687f38f962e6f6960
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:26:02 2023 +0530
+
+    added in master
+
+commit f61f4da4dcba8ff50e040d33373ed5455659c7c0
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:15:11 2023 +0530
+
+    This is third commit
+
+commit e8bdef6f93982464a7dbb97ad2f8664f9d328271
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:13:50 2023 +0530
+
+    This is second commit
+
+commit 0a44351db10c6d7da1a1650e22e0e8e74b2f787c
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:12:07 2023 +0530
+
+    Added first 2 files
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ touch file.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git branch branch1
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git branch ls
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git branch -d ls
+Deleted branch ls (was 3433e68).
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git branch -a
+  branch1
+* master
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git add file.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git commit -m "Adding file to master second time" file.txt
+[master 98e4c1d] Adding file to master second time
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git checkout branch1
+Switched to branch 'branch1'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git status
+On branch branch1
+nothing to commit, working tree clean
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ ls
+abc.txt  def.txt  index.html  jayesh.txt  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git add file.txt
+fatal: pathspec 'file.txt' did not match any files
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git branch branch2
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git checkout master
+Switched to branch 'master'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git status
+On branch master
+nothing to commit, working tree clean
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ touch file3.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file3.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git checkout branch1
+Switched to branch 'branch1'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git status
+On branch branch1
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file3.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git checkout master
+Switched to branch 'master'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git add .
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git commit -m "File2 commited"
+[master dec04ed] File2 commited
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file3.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git checkout master
+Already on 'master'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git checkout branch1
+Switched to branch 'branch1'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git status
+On branch branch1
+nothing to commit, working tree clean
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ ls
+abc.txt  def.txt  index.html  jayesh.txt  text.txt  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git checkout master
+Switched to branch 'master'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git merge branch1
+Merge made by the 'ort' strategy.
+ text.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 text.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ ls
+abc.txt  def.txt  file.txt  file3.txt  index.html  jayesh.txt  text.txt  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git merge branch1
+Already up to date.
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git checkout branch1
+Switched to branch 'branch1'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch1)
+$ git checkout master
+Switched to branch 'master'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ touch file4.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git add .
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git commit -m "adding file4"
+[master b9b8782] adding file4
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file4.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git log
+commit b9b878277097bafb55cb5afd8dddbfdd0a7e00e4 (HEAD -> master)
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:58:04 2023 +0530
+
+    adding file4
+
+commit f9f044bf9327d54535d30c1eefb330554485847e
+Merge: dec04ed 52ab042
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:51:59 2023 +0530
+
+    Merge branch 'branch1'
+
+commit dec04ed0ebc31e501def41c5f4e8dd3ee277e7fd
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:49:11 2023 +0530
+
+    File2 commited
+
+commit 52ab04234a0ef60e04a5e004fdd4710646b05171 (branch2, branch1)
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:45:06 2023 +0530
+
+    adding file to branch1
+
+commit b52d0730e5c3dbebfba1c454593d2229ebd39cb8
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:38:43 2023 +0530
+
+    Added changed to master
+
+commit 98e4c1d5b167b2f7fe1491a0e6613c3390f2fd87
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:34:07 2023 +0530
+
+    Adding file to master second time
+
+commit 3433e687cf2a7a66974231bf5b74f2e4dc0aad18
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:30:57 2023 +0530
+
+    file.txt deleted
+
+commit 342dc6e0d155acad16cc02f687f38f962e6f6960
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:26:02 2023 +0530
+
+    added in master
+
+commit f61f4da4dcba8ff50e040d33373ed5455659c7c0
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:15:11 2023 +0530
+
+    This is third commit
+
+commit e8bdef6f93982464a7dbb97ad2f8664f9d328271
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+:
+commit b9b878277097bafb55cb5afd8dddbfdd0a7e00e4 (HEAD -> master)
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:58:04 2023 +0530
+
+    adding file4
+
+commit f9f044bf9327d54535d30c1eefb330554485847e
+Merge: dec04ed 52ab042
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:51:59 2023 +0530
+
+    Merge branch 'branch1'
+
+commit dec04ed0ebc31e501def41c5f4e8dd3ee277e7fd
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:49:11 2023 +0530
+
+    File2 commited
+
+commit 52ab04234a0ef60e04a5e004fdd4710646b05171 (branch2, branch1)
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:45:06 2023 +0530
+
+    adding file to branch1
+
+commit b52d0730e5c3dbebfba1c454593d2229ebd39cb8
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:38:43 2023 +0530
+
+    Added changed to master
+
+commit 98e4c1d5b167b2f7fe1491a0e6613c3390f2fd87
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:34:07 2023 +0530
+
+    Adding file to master second time
+
+commit 3433e687cf2a7a66974231bf5b74f2e4dc0aad18
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:30:57 2023 +0530
+
+    file.txt deleted
+
+commit 342dc6e0d155acad16cc02f687f38f962e6f6960
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:26:02 2023 +0530
+
+    added in master
+
+commit f61f4da4dcba8ff50e040d33373ed5455659c7c0
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+Date:   Tue Jul 25 00:15:11 2023 +0530
+
+    This is third commit
+
+commit e8bdef6f93982464a7dbb97ad2f8664f9d328271
+Author: jayesh <jayesh.sinnarkar@gmail.com>
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git checkout branch2
+Switched to branch 'branch2'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ ls
+abc.txt  def.txt  index.html  jayesh.txt  text.txt  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ git cherry-pick b9bb9b878277097bafb55cb5afd8dddbfdd0a7e00e4
+git: 'cherry-pickk' is not a git command. See 'git --help'.
+
+The most similar command is
+        cherry-pick
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ ls
+abc.txt  def.txt  index.html  jayesh.txt  text.txt  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ git cherry-pic bb9b878277097bafb55cb5afd8dddbfdd0a7e00e4
+[branch2 15fe29e] adding file4
+ Date: Tue Jul 25 00:58:04 2023 +0530
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file4.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ ls
+abc.txt  def.txt  file4.txt  index.html  jayesh.txt  text.txt  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ touch file6.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ git status
+On branch branch2
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        file6.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ git add .
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ git commit -m "adding file6"
+[branch2 2116fe5] adding file6
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file6.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ ls
+abc.txt  def.txt  file4.txt  file6.txt  index.html  jayesh.txt  text.txt  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ git checkout master
+Switched to branch 'master'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ ls
+abc.txt  def.txt  file.txt  file3.txt  file4.txt  index.html  jayesh.txt  text.txt  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git merge branch2
+Merge made by the 'ort' strategy.
+ file6.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file6.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ ls
+abc.txt  def.txt  file.txt  file3.txt  file4.txt  file6.txt  index.html  jayesh.txt  text.txt  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git checkout branch2
+Switched to branch 'branch2'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ git merge master
+Updating 2116fe5..ffbb8bc
+Fast-forward
+ file.txt  | 1 +
+ file3.txt | 0
+ 2 files changed, 1 insertion(+)
+ create mode 100644 file.txt
+ create mode 100644 file3.txt
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ ls
+abc.txt  def.txt  file.txt  file3.txt  file4.txt  file6.txt  index.html  jayesh.txt  text.txt  xyz.xml
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (branch2)
+$ git checkout master
+Switched to branch 'master'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git branch -d branch2
+Deleted branch branch2 (was ffbb8bc).
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git log --all --graph --decorate
+*   commit ffbb8bc50f2d3b23fc526cabcb094fb31a6cb084 (HEAD -> master)
+|\  Merge: b9b8782 2116fe5
+| | Author: jayesh <jayesh.sinnarkar@gmail.com>
+| | Date:   Tue Jul 25 01:03:39 2023 +0530
+| |
+| |     Merge branch 'branch2'
+| |
+| * commit 2116fe58ba6f29ec5de83a1dd544a9da2acf4da8
+| | Author: jayesh <jayesh.sinnarkar@gmail.com>
+| | Date:   Tue Jul 25 01:02:49 2023 +0530
+| |
+| |     adding file6
+| |
+| * commit 15fe29e18d22d0aee1171a312d44601be9a4c5b6
+| | Author: jayesh <jayesh.sinnarkar@gmail.com>
+| | Date:   Tue Jul 25 00:58:04 2023 +0530
+| |
+| |     adding file4
+| |
+* | commit b9b878277097bafb55cb5afd8dddbfdd0a7e00e4
+| | Author: jayesh <jayesh.sinnarkar@gmail.com>
+| | Date:   Tue Jul 25 00:58:04 2023 +0530
+| |
+| |     adding file4
+| |
+* | commit f9f044bf9327d54535d30c1eefb330554485847e
+|\| Merge: dec04ed 52ab042
+| | Author: jayesh <jayesh.sinnarkar@gmail.com>
+| | Date:   Tue Jul 25 00:51:59 2023 +0530
+| |
+| |     Merge branch 'branch1'
+| |
+| * commit 52ab04234a0ef60e04a5e004fdd4710646b05171 (branch1)
+| | Author: jayesh <jayesh.sinnarkar@gmail.com>
+| | Date:   Tue Jul 25 00:45:06 2023 +0530
+| |
+| |     adding file to branch1
+| |
+* | commit dec04ed0ebc31e501def41c5f4e8dd3ee277e7fd
+| | Author: jayesh <jayesh.sinnarkar@gmail.com>
+| | Date:   Tue Jul 25 00:49:11 2023 +0530
+| |
+| |     File2 commited
+| |
+* | commit b52d0730e5c3dbebfba1c454593d2229ebd39cb8
+| | Author: jayesh <jayesh.sinnarkar@gmail.com>
+| | Date:   Tue Jul 25 00:38:43 2023 +0530
+| |
+| |     Added changed to master
+| |
+* | commit 98e4c1d5b167b2f7fe1491a0e6613c3390f2fd87
+|/  Author: jayesh <jayesh.sinnarkar@gmail.com>
+|   Date:   Tue Jul 25 00:34:07 2023 +0530
+|
+|       Adding file to master second time
+|
+* commit 3433e687cf2a7a66974231bf5b74f2e4dc0aad18
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (master)
+$ git branch -m main
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (main)
+$ git push -u origin https://github.com/Jayesh-Sinnarkar/GitTest.git
+fatal: invalid refspec 'https://github.com/Jayesh-Sinnarkar/GitTest.git'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (main)
+$ git remote add origin https://github.com/Jayesh-Sinnarkar/GitTest.git
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (main)
+$ git push -u origin https://github.com/Jayesh-Sinnarkar/GitTest.git
+fatal: invalid refspec 'https://github.com/Jayesh-Sinnarkar/GitTest.git'
+
+jayes@VISION MINGW64 ~/Desktop/GitTest (main)
+$ git push -u origin main
+Enumerating objects: 28, done.
+Counting objects: 100% (28/28), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (26/26), done.
+Writing objects: 100% (28/28), 2.40 KiB | 409.00 KiB/s, done.
+Total 28 (delta 15), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (15/15), done.
+To https://github.com/Jayesh-Sinnarkar/GitTest.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
