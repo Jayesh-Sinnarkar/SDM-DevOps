@@ -1,0 +1,168 @@
+UPDATE: 
+-----------------LogOut previous git from gitbash------------------
+To check existing log in and log out of that account: 
+$git config --list 
+$git config --global --unset user.name "<username>"
+$git config --global --unset user.email "<email>"
+$git config --list
+-----------------LogIn your git to gitbash--------------------------
+$git config --global user.name "<username>"
+$git config --global user.email "<email>"
+
+These commands will set your GitHub username and email globally, so they will be used for all Git repositories on your computer. If you want to set these values locally for a specific repository, you can omit the --global flag and run the commands inside the repository directory.
+
+$git config --list 
+
+
+...............................
+// ready to help !
+hii
+br ready
+solving now
+  //change class name and variable, method names according to your preference in following code
+
+Step 1: compile and run above code
+  
+-----------------------------------SumAndAverage.java------------------------------------
+import java.util.Scanner;
+
+public class SumAndAverage {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter the first number: ");
+        double num1 = input.nextDouble();
+
+        System.out.print("Enter the second number: ");
+        double num2 = input.nextDouble();
+
+        System.out.print("Enter the third number: ");
+        double num3 = input.nextDouble();
+
+        double largestNumber = num1;
+
+        if (num2 > largestNumber) {
+            largestNumber = num2;
+        }
+
+        if (num3 > largestNumber) {
+            largestNumber = num3;
+        }
+
+        double sumOfLargest = largestNumber;
+        System.out.println("The sum of the largest number is: " + sumOfLargest);
+
+        input.close();
+    }
+}
+
+On terminal: 
+javac SumAndAverage.java
+java SumAndAverage
+
+step 2: Follow the instructions to input three numbers. The program will display the sum of the largest number.
+  
+Step 3: Create a Git Project and Push to GitHub
+Open a terminal or command prompt.
+Navigate to the folder containing the "SumAndAverage.java" file. (cd foldername)
+Initialize a new Git repository:
+
+$git init
+
+$git add SumAndAverage.java
+
+$git commit -m "Initial version of SumAndAverage program"
+
+  
+step 4: Create a new repository on GitHub (https://github.com/new) with an appropriate name.
+Link your local Git repository to the GitHub repository:
+                                           
+$git remote add origin <your_github_repository_url.git>
+
+$git push -u origin master
+
+Now, your initial version of the Java program is on GitHub.
+
+
+step 5: Open the "SumAndAverage.java" file in your Java development environment or text editor.
+Modify the program to calculate the average of the three numbers.
+Update the output message to display both the sum of the largest number and the average of the three numbers.
+
+                                           
+import java.util.Scanner;
+
+public class SumAndAverage {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Enter the first number: ");
+        double num1 = input.nextDouble();
+
+        System.out.print("Enter the second number: ");
+        double num2 = input.nextDouble();
+
+        System.out.print("Enter the third number: ");
+        double num3 = input.nextDouble();
+
+        double largestNumber = num1;
+
+        if (num2 > largestNumber) {
+            largestNumber = num2;
+        }
+				//Added average logic here
+        if (num3 > largestNumber) {
+            largestNumber = num3;
+        }
+
+        double sumOfLargest = num1 + num2 + num3 - largestNumber;
+        double average = (num1 + num2 + num3) / 3;
+
+        System.out.println("The sum of the largest number is: " + sumOfLargest);
+        System.out.println("The average of the three numbers is: " + average); //displaying average of numbers here
+
+        input.close();
+    }
+}
+
+step 6:   
+
+Save the modified "SumAndAverage.java" file.
+Open a terminal or command prompt and navigate to the folder containing the file. (cd fo;der name)
+Stage and commit the changes:
+                                           
+$git add SumAndAverage.java
+$git commit -m "Added logic to calculate the average"
+$git push origin master
+
+------------------------------------------------------------------DOCKERFILE------------------------------------------------------
+                                           
+# Use the official OpenJDK image as the base image
+FROM openjdk:latest
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the Java program into the container
+COPY SumAndAverage.java /app
+
+# Compile the Java program
+RUN javac SumAndAverage.java
+
+# Run the Java program when the container starts
+CMD ["java", "SumAndAverage"]
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+Build the Docker Image
+Open a terminal or command prompt, navigate to the directory containing the "Dockerfile" and the "SumAndAverage.java" files, and run the following command to build the Docker image:
+
+$docker build -t sum_and_average .
+
+                                           
+$Run the Docker Container
+After the image is built, you can run the Docker container using the following command:
+
+$docker run -it sum_and_average
+
+----------------------------------------COMPLETED-------------------------------------------------------------
+                                           
+

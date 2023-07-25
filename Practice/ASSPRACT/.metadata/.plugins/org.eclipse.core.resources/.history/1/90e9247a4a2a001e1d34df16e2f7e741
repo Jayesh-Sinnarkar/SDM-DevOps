@@ -1,0 +1,120 @@
+package tester;
+import java.sql.*;
+
+public class StudentCRUD {
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/your_database_name";  /*"jdbc:mysql://localhost:3306/your_database_name";*/
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "root";
+
+    public static void main(String[] args) {
+        try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD)) {
+            createTable(conn);
+            insertStudent(conn, 101, "John Doe", "Class X", "A");
+            insertStudent(conn, 102, "Jane Smith", "Class XI", "B");
+
+            Student studentToUpdate = new Student(101, "John Doe Updated", "Class X", "A");
+            updateStudent(conn, studentToUpdate);
+
+            deleteStudent(conn, 102);
+
+            retrieveStudents(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createTable(Connection conn) throws SQLException {
+        String createTableSQL = "CREATE TABLE IF NOT EXISTS students ("
+                + "rollNo INT PRIMARY KEY, "
+                + "name VARCHAR(50), "
+                + "class VARCHAR(10), "
+                + "course VARCHAR(2))"; // Changed column name from "div" to "course"
+
+        try (Statement stmt = conn.createStatement()) {
+            stmt.executeUpdate(createTableSQL);
+        }
+    }
+
+    private static void insertStudent(Connection conn, int rollNo, String name, String className, String course)
+            throws SQLException {
+        String insertSQL = "INSERT INTO students (rollNo, name, class, course) VALUES (?, ?, ?, ?)"; // Changed column name from "div" to "course"
+
+        try (PreparedStatement pstmt = conn.prepareStatement(insertSQL)) {
+            pstmt.setInt(1, rollNo);
+            pstmt.setString(2, name);
+            pstmt.setString(3, className);
+            pstmt.setString(4, course);
+
+            pstmt.executeUpdate();
+        }
+    }
+
+    private static void updateStudent(Connection conn, Student student) throws SQLException {
+        String updateSQL = "UPDATE students SET name=?, class=?, course=? WHERE rollNo=?"; // Changed column name from "div" to "course"
+
+        try (PreparedStatement pstmt = conn.prepareStatement(updateSQL)) {
+            pstmt.setString(1, student.getName());
+            pstmt.setString(2, student.getClassName());
+            pstmt.setString(3, student.getCourse());
+            pstmt.setInt(4, student.getRollNo());
+
+            pstmt.executeUpdate();
+        }
+    }
+
+    private static void deleteStudent(Connection conn, int rollNo) throws SQLException {
+        String deleteSQL = "DELETE FROM students WHERE rollNo=?";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(deleteSQL)) {
+            pstmt.setInt(1, rollNo);
+            pstmt.executeUpdate();
+        }
+    }
+
+    private static void retrieveStudents(Connection conn) throws SQLException {
+        String selectSQL = "SELECT * FROM students";
+
+        try (Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(selectSQL)) {
+
+            while (rs.next()) {
+                int rollNo = rs.getInt("rollNo");
+                String name = rs.getString("name");
+                String className = rs.getString("class");
+                String course = rs.getString("course");
+
+                System.out.println("Roll No: " + rollNo + ", Name: " + name + ", Class: " + className + ", Course: " + course); // Changed "Div" to "Course"
+            }
+        }
+    }
+}
+
+class Student {
+    private int rollNo;
+    private String name;
+    private String className;
+    private String course;
+
+    public Student(int rollNo, String name, String className, String course) {
+        this.rollNo = rollNo;
+        this.name = name;
+        this.className = className;
+        this.course = course;
+    }
+
+    public int getRollNo() {
+        return rollNo;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+}
