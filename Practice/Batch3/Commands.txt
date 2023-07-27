@@ -1,0 +1,23 @@
+docker pull mysql
+
+dockr run -it --name mysqldb1 -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root mysql
+
+docker exec -it mysqldb1 /bin/bash
+
+#mysql -u root -p
+
+>create database studentrecord;
+
+>use studentrecord;
+
+> insert into student values (101,"RAM","DAC"),(102,"Ashish","DAC"),(103,"SHAM","DAC");
+
+> select * from student;
+
+
+--------------------------------------------------------------------------
+
+docker build -t studrec .
+
+docker run -d -p 8080:8080 studrec
+

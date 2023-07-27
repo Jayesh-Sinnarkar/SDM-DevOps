@@ -653,7 +653,7 @@ $ git push -u origin https://github.com/Jayesh-Sinnarkar/GitTest.git
 fatal: invalid refspec 'https://github.com/Jayesh-Sinnarkar/GitTest.git'
 
 jayes@VISION MINGW64 ~/Desktop/GitTest (main)
-$ git remote add origin https://github.com/Jayesh-Sinnarkar/GitTest.git
+$ git remote add origin https://github.com/Jayesh-Sinnarkar/TestAns.git
 
 jayes@VISION MINGW64 ~/Desktop/GitTest (main)
 $ git push -u origin https://github.com/Jayesh-Sinnarkar/GitTest.git
